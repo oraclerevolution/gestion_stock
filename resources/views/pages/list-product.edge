@@ -1,0 +1,70 @@
+@layout('layout')
+
+@section('body')
+  <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="mb-3">Liste des produits</h4>
+                        <p class="mb-0">La liste des produits dicte la liste effective de tous vos produits que vous avez ajoutés</p>
+                    </div>
+                    <a href="/add-product" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Ajouter un produit</a>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive rounded mb-3">
+                <table class="data-table table mb-0 tbl-server-info">
+                    <thead class="bg-white text-uppercase">
+                        <tr class="ligth ligth-data">
+                            <th>
+                                <div class="checkbox d-inline-block">
+                                    <input type="checkbox" class="checkbox-input" id="checkbox1">
+                                    <label for="checkbox1" class="mb-0"></label>
+                                </div>
+                            </th>
+                            <th>Produits</th>
+                            <th>Code</th>
+                            <th>Price entreprise</th>
+                            <th>Price particulier</th>
+                            <th>Quantité</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ligth-body">
+                        @each(produit in produits)
+                            <tr>
+                                <td>
+                                    <div class="checkbox d-inline-block">
+                                        <input type="checkbox" class="checkbox-input" id="checkbox2">
+                                        <label for="checkbox2" class="mb-0"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="../assets/images/table/product/01.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image">
+                                        <div>
+                                            {{produit.name}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{produit.code}}</td>
+                                <td>{{produit.prix_entreprise}} FCFA</td>
+                                <td>{{produit.prix_particulier}} FCFA</td>
+                                <td>{{produit.quantite}}</td>
+                                <td>
+                                    <div class="d-flex align-items-center list-action">
+                                        <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
+                                            href="/produit_details/{{produit.id}}"><i class="ri-pencil-line mr-0"></i></a>
+                                        <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
+                                            href="/delete-produit/{{produit.id}}"><i class="ri-delete-bin-line mr-0"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                          
+                        @endeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+@endsection

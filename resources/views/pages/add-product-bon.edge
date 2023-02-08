@@ -1,0 +1,125 @@
+@layout('layout')
+
+@section('body')
+    <div class="row">
+        <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Ajouter les produits du bon</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/create-bon-produit" method="POST">
+                    {{ csrfField() }}
+                    @if(total == montant_total_bon)
+                    <div class="row"> 
+                        <div class="col-md-12">                      
+                            <div class="form-group">
+                                <label>Selectionnez le produit *</label>
+                                <select disabled name="type_produit" id="" class="form-control">
+                                    @each(type in types_produits)
+                                      <option value="{{type.id}}">{{type.name_type}}</option>
+                                    @endeach
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">                      
+                            <div class="form-group">
+                                <label>Montant du produit *</label>
+                                <input type="text" disabled class="form-control" name="montant" required placeholder="3500">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div> 
+                        <div class="col-md-6">                      
+                            <div class="form-group">
+                                <label>Quantité produit *</label>
+                                <input type="text" disabled class="form-control" name="quantite" placeholder="2" required>
+                                <input type='hidden' name="bon_id" value={{parameters.id}} />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>   
+                    </div>
+                    @else
+                        <div class="row"> 
+                            <div class="col-md-12">                      
+                                <div class="form-group">
+                                    <label>Selectionnez le produit *</label>
+                                    <select name="type_produit" id="" class="form-control">
+                                        @each(type in types_produits)
+                                        <option value="{{type.id}}">{{type.name_type}}</option>
+                                        @endeach
+                                    </select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">                      
+                                <div class="form-group">
+                                    <label>Montant du produit *</label>
+                                    <input type="text" class="form-control" name="montant" required placeholder="3500">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div> 
+                            <div class="col-md-6">                      
+                                <div class="form-group">
+                                    <label>Quantité produit *</label>
+                                    <input type="text" class="form-control" name="quantite" placeholder="2" required>
+                                    <input type='hidden' name="bon_id" value={{parameters.id}} />
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>   
+                        </div>
+                      
+                    @endif
+                    @if(total < montant_total_bon)
+                        <button type="submit" class="btn btn-primary mr-2">Ajouter le produit</button>
+                    @elseif(total == montant_total_bon)
+                        <a href="/paiement/{{parameters.id}}" class="btn btn-secondary mr-2">Passez au paiement</a>
+                    @else
+                        <p class="badge badge-danger" style="text-transform:lowercase">Le prix total des produits ajoutés en fonction de leur quantité est supérieur au montant total du bon de commande. Veuillez revoir les quantité des produits.</p>
+                    @endif                          
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="table-responsive rounded mb-3">
+            <table class="data-table table mb-0 tbl-server-info">
+                <thead class="bg-white text-uppercase">
+                    <tr class="ligth ligth-data">
+                        <th>Nom du produit</th>
+                        <th>Montant</th>
+                        <th>Quantité</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="ligth-body">
+                    @each(produit in bonproduits)
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        {{produit.produit_id}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{produit.montant_produit}} FCFA</td>
+                            <td>{{produit.quantite}}</td>
+                            <td>
+                                <div class="d-flex align-items-center list-action">
+                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
+                                        href="/type-produit-details/{{produit.id}}"><i class="ri-pencil-line mr-0"></i></a>
+                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
+                                        href="/delete-type-produit/{{produit.id}}"><i class="ri-delete-bin-line mr-0"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                      
+                    @endeach
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

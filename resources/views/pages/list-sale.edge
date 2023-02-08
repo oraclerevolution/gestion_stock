@@ -1,0 +1,66 @@
+@layout('layout')
+
+@section('body')
+   <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="mb-3">Liste totale des paiements</h4>
+                        <p class="mb-0">La liste des ventes vous permet de contrôler efficacement les indicateurs clés de performance des ventes et de les surveiller dans un lieu central<br> tout en aidant les équipes à atteindre leurs objectifs de vente. </p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive rounded mb-3">
+                <table class="data-table table mb-0 tbl-server-info">
+                    <thead class="bg-white text-uppercase">
+                        <tr class="ligth ligth-data">
+                            <th>Date d'enregistrement</th>
+                            <th>Numero du bon</th>
+                            <th>Total</th>
+                            <th>Somme versée</th>
+                            <th>Date d'encaissement</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ligth-body">
+                    @each(paiement in paiements)
+                        <tr>
+                            <td>{{paiement.created_at}}</td>
+                            <td>{{paiement.bon_id}}</td>
+                            <td>{{paiement.montant}}</td>
+                            <td>{{paiement.montant_versee}}</td>
+                            @if(paiement.date_encaissement == null)
+                                <td></td>
+                            @else
+                                <td>{{paiement.date_encaissement}}</td>
+                            @endif
+                            @if(paiement.type_paiement == 1)
+                                <td>
+                                    <div class="badge badge-success">Paiement Cash</div>
+                                </td>
+                            @else
+                                <td>
+                                    <div class="badge badge-warning">Paiement à crédit</div>
+                                </td>
+                            @endif
+                            <td>
+                                <div class="d-flex align-items-center list-action">
+                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
+                                        href="#"><i class="ri-eye-line mr-0"></i></a>
+                                    @if(paiement.type_paiement == 2)
+                                        <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
+                                        href="#"><i class="ri-hand-coin-line mr-0"></i></a>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+@endsection

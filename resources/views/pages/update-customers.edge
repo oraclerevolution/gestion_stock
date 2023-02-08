@@ -1,0 +1,109 @@
+@layout('layout')
+
+@section('body')
+   <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Modifier les infos du client</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/update-client" method="POST">
+                            {{ csrfField() }}
+                            @each(client in client)
+                                <div class="row"> 
+                                    <div class="col-md-6">                      
+                                        <div class="form-group">
+                                            <label>Nom *</label>
+                                            <input type="text" class="form-control" name="name" value="{{client.name}}" required>
+                                            <input type="hidden" value="{{client.id}}" name="id" />
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">                      
+                                        <div class="form-group">
+                                            <label>Prenoms *</label>
+                                            <input type="text" class="form-control" name="prenoms" value="{{client.prenoms}}" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Téléphone *</label>
+                                            <input type="text" name="telephone" class="form-control" value="{{client.telephone}}" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>   
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Commune *</label>
+                                            <input type="text" class="form-control" name="commune" value="{{client.commune}}" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div> 
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Whatsapp *</label>
+                                            <input type="text" class="form-control" name="whatsapp" value="{{client.whatsapp}}" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Type de client</label>
+                                            @if(client.type_client == 0)
+                                              <select name="type_client" class="form-control" id="">
+                                                <option value="1">Client entreprise</option>
+                                                <option value="0" selected>Client particulier</option>
+                                            </select>
+                                            @else
+                                            <select name="type_client" class="form-control" id="">
+                                                <option value="1" selected>Client entreprise</option>
+                                                <option value="0">Client particulier</option>
+                                            </select>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Statut du client</label>
+                                            @if(client.statut == 0)
+                                              <select name="statut" class="form-control" id="">
+                                                <option value="0" selected>Actif</option>
+                                                <option value="1">Inactif</option>
+                                            </select>
+                                            @else
+                                            <select name="statut" class="form-control" id="">
+                                                <option value="0">Actif</option>
+                                                <option value="1" selected>Inactif</option>
+                                            </select>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Commercial Affiliate *</label>
+                                            <select name="commercial_id" class="form-control" id="">
+                                            @each(commercial in commerciaux)
+                                                <option value="{{commercial.id}}">{{commercial.name}}</option>
+                                            @endeach
+                                            </select>
+                                            <small style="color:red">Ce champ est à modifier obligatoirement.</small>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div> 
+                                </div>                            
+                            @endeach
+                            <button type="submit" class="btn btn-primary mr-2">Modifier les infos</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection

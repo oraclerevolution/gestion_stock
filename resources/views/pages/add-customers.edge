@@ -1,0 +1,81 @@
+@layout('layout')
+
+@section('body')
+    <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Ajouter un nouveau client</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/create-customer" method="POST">
+                            {{ csrfField() }}
+                            <div class="row"> 
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Nom *</label>
+                                        <input type="text" class="form-control" name="name" placeholder="N'Goran" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Prenoms *</label>
+                                        <input type="text" class="form-control" name="prenoms" placeholder="Assia Jean" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Téléphone *</label>
+                                        <input type="text" name="telephone" class="form-control" placeholder="+2250707070707" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>   
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Commune *</label>
+                                        <input type="text" class="form-control" name="commune" placeholder="Anyama" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Whatsapp *</label>
+                                        <input type="text" class="form-control" name="whatsapp" placeholder="+2250707070707" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Type de client</label>
+                                        <select name="type_client" class="form-control" id="">
+                                            <option value="1">Client entreprise</option>
+                                            <option value="0">Client particulier</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Commercial Affiliate *</label>
+                                        <select name="commercial_id" class="form-control" id="">
+                                        @each(commercial in commerciaux)
+                                            <option value="{{commercial.id}}">{{commercial.name}} {{commercial.prenoms}}</option>
+                                        @endeach
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                            </div>                            
+                            <button type="submit" class="btn btn-primary mr-2">Ajouter un client</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection

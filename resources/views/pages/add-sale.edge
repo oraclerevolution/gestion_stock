@@ -1,0 +1,64 @@
+@layout('layout')
+
+@section('body')
+   <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Faire un paiement</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/create-paiement" method="POST">
+                            {{ csrfField() }}
+                            <div class="row">                                  
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Identifiant du bon *</label>
+                                        <input type="text" value="{{bon_id}}" disabled class="form-control" />
+                                        <input type="hidden" name="bon_id" value="{{bon_id}}" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Montant total du bon *</label>
+                                        <input type="text" value="{{montant_bon}}" disabled class="form-control"/>
+                                        <input type="hidden" name="montant" value="{{montant_bon}}" id="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>   
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Montant versée *</label>
+                                        <input type="text" name="montant_versee" class="form-control" placeholder="5000" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>   
+                                
+                                <div class="col-md-6"> 
+                                    <div class="form-group">
+                                        <label>Type de paiement *</label>
+                                        <select name="type_paiement" class="form-control" data-style="py-0">
+                                            <option value="">Selectionnez le type de paiement</option>
+                                            <option value="1">Cash</option>
+                                            <option value="2">A crédit</option>
+                                        </select>
+                                    </div>
+                                </div> 
+
+                                <div class="col-md-6">
+                                    <small style="color:red">Si vous avez selectionné paiement à crédit, veuillez indiquer la date d'encaissement.</small>
+                                    <div class="form-group">
+                                        <label>Date d'encaissement</label>
+                                        <input type="date" name="date_encaissement" class="form-control" name="date_encaissement" id="date_encaissement">
+                                    </div>
+                                </div>  
+                            </div>                            
+                            <button type="submit" class="btn btn-primary mr-2">Ajouter le paiement</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection

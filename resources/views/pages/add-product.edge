@@ -1,0 +1,72 @@
+@layout('layout')
+
+@section('body')
+  <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Ajouter un nouveau produit</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/create-product" method="POST" enctype="multipart/form-data">
+                        {{ csrfField() }}
+                            <div class="row">
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Nom du produit *</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Honney Babish" required data-errors="Please Enter Name." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>    
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Code unique produit *</label>
+                                        <input type="text" class="form-control" name="code" placeholder="004" required data-errors="Please Enter Code." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prix entreprise *</label>
+                                        <input type="text" class="form-control" name="prix_entreprise" placeholder="3000" required data-errors="Please Enter Cost." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prix particulier *</label>
+                                        <input type="text" class="form-control" name="prix_particulier" placeholder="2500" required data-errors="Please Enter Price." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">                                    
+                                    <div class="form-group">
+                                        <label>Quantité *</label>
+                                        <input type="text" class="form-control" name="quantite" placeholder="250" required required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Image du produit *</label>
+                                        <input type="file" required class="form-control image-file" name="image" accept="image/*">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description du produit</label>
+                                        <textarea class="form-control" name="description" placeholder="Description du produit" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <button type="submit" class="btn btn-primary mr-2">Ajouter le produit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection

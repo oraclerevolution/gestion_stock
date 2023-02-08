@@ -1,0 +1,57 @@
+@layout('layout')
+
+@section('body')
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="mb-3">Liste des type de produits</h4>
+                        <p class="mb-0">La liste des types de produits dicte la liste effective de toutes les lignes de produit que vous avez ajoutés</p>
+                    </div>
+                    <a href="/add-type" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Ajouter un type de produit</a>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive rounded mb-3">
+                <table class="data-table table mb-0 tbl-server-info">
+                    <thead class="bg-white text-uppercase">
+                        <tr class="ligth ligth-data">
+                            <th>Produits</th>
+                            <th>Nom du type</th>
+                            <th>Prix entreprise</th>
+                            <th>Prix particulier</th>
+                            <th>Quantité</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ligth-body">
+                        @each(type in type_produits)
+                            <tr>
+                                <td>{{type.produit_id}}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            {{type.name_type}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{type.prix_professionnel}} FCFA</td>
+                                <td>{{type.prix_particulier}} FCFA</td>
+                                <td>{{type.quantite}}</td>
+                                <td>
+                                    <div class="d-flex align-items-center list-action">
+                                        <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
+                                            href="/type-produit-details/{{type.id}}"><i class="ri-pencil-line mr-0"></i></a>
+                                        <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
+                                            href="/delete-type-produit/{{type.id}}"><i class="ri-delete-bin-line mr-0"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                          
+                        @endeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+@endsection

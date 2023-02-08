@@ -1,0 +1,39 @@
+@layout('layout')
+
+@section('body')
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Ajouter un nouveau bon</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/create-bon" method="POST">
+                    {{ csrfField() }}
+                    <div class="row"> 
+                        <div class="col-md-6">                      
+                            <div class="form-group">
+                                <label>Numéro de bon *</label>
+                                <input type="text" class="form-control" name="numero_bon" placeholder="1250" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">                      
+                            <div class="form-group">
+                                <label>Montant total du bon *</label>
+                                <input type="text" class="form-control" name="montant_total" placeholder="15000" required>
+                                <input type="hidden" name="commercial_id" value="{{parameters.idcom}}">
+                                <input type="hidden" name="client_id" value="{{parameters.idclient}}">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>   
+                    </div>                            
+                    <button type="submit" class="btn btn-primary mr-2">Ajouter le bon</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

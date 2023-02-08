@@ -1,0 +1,67 @@
+@layout('layout')
+
+@section('body')
+  <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Modifier un type de produit produit</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/update-type-produit" method="POST">
+                        {{ csrfField() }}
+                            @each(type in typeproduit)
+                                <div class="row">
+                                    <div class="col-md-6">                      
+                                        <div class="form-group">
+                                            <label>Choisissez le produit *</label>
+                                            <select name="produit" id="" class="form-control">
+                                                <option value="">Choisissez un produit</option>
+                                                @each(produit in produits)
+                                                    <option value="{{produit.id}}">{{produit.name}}</option>
+                                                @endeach
+                                            </select>
+                                            <input type="hidden" name="id" value="{{type.id}}">
+                                            <small style="color:red">Ce champ doit être modifié obligatoirement</small>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">                      
+                                        <div class="form-group">
+                                            <label>Nom du type de produit *</label>
+                                            <input type="text" class="form-control" value="{{type.name_type}}" name="name" placeholder="Honney Babish" required data-errors="Please Enter Name." required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Prix entreprise *</label>
+                                            <input type="text" class="form-control" value="{{type.prix_professionnel}}" name="prix_entreprise" placeholder="3000" required data-errors="Please Enter Cost." required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Prix particulier *</label>
+                                            <input type="text" class="form-control" value="{{type.prix_particulier}}" name="prix_particulier" placeholder="2500" required data-errors="Please Enter Price." required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">                                    
+                                        <div class="form-group">
+                                            <label>Quantité *</label>
+                                            <input type="text" class="form-control" value="{{type.quantite}}" name="quantite" placeholder="250" required required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                </div>                            
+                            @endeach
+                            <button type="submit" class="btn btn-primary mr-2">Modifier le type de produit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection

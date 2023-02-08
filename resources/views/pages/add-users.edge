@@ -1,0 +1,80 @@
+@layout('layout')
+
+@section('body')
+   <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Ajouter un nouveau commercial</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/create-commercial" method="POST">
+                        {{ csrfField() }}
+                            <div class="row"> 
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Nom *</label>
+                                        <input type="text" class="form-control" placeholder="N'Goran" name="name" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prénoms *</label>
+                                        <input type="text" class="form-control" placeholder="Assia Jean" name="prenoms" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>    
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Numéro de téléphone *</label>
+                                        <input type="text" class="form-control" placeholder="0709483463" name="telephone" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Commune *</label>
+                                        <input type="text" class="form-control" placeholder="Cocody" name="commune" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Whatsapp *</label>
+                                        <input type="text" class="form-control" placeholder="0709483463" name="whatsapp">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Zone de couverture *</label>
+                                        <input type="text" class="form-control" placeholder="Treichville" name="zone_couverture" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Email *</label>
+                                        <input type="text" class="form-control" placeholder="commercial@email.com" autocomplete="email" name="email" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>  
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Mot de passe *</label>
+                                        <input type="password" class="form-control" placeholder="*********" name="password" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>                               
+                            </div>                            
+                            <button type="submit" class="btn btn-primary mr-2">Ajouter le commercial</button>
+                            <button type="reset" class="btn btn-danger">Vider les champs</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection

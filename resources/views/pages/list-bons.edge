@@ -1,0 +1,48 @@
+@layout('layout')
+
+@section('body')
+  <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="mb-3">Liste des bons</h4>
+                        <p class="mb-0">La liste des bons dicte la liste effective de tous vos bons que vous avez créer à partir d'une commande.</p>
+                    </div>
+                    <a href="/nouveau-bon/list-commerciaux" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Ajouter un bon</a>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive rounded mb-3">
+                <table class="data-table table mb-0 tbl-server-info">
+                    <thead class="bg-white text-uppercase">
+                        <tr class="ligth ligth-data">
+                            
+                            <th>Numéro du bon</th>
+                            <th>Montant total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ligth-body">
+                        @each(bon in bons)
+                            <tr>
+                                <td>
+                                    {{bon.numero_bon}}
+                                </td>
+                                <td>{{bon.montant_total}} FCFA</td>
+                                <td>
+                                    <div class="d-flex align-items-center list-action">
+                                        <a href="/{{bon.id}}" class="btn btn-secondary mr-1">Continuer</a>
+                                        @if(bon.statut == 1)
+                                            <a href="/{{bon.id}}" class="btn btn-primary">Passer au paiment</a>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                          
+                        @endeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+@endsection

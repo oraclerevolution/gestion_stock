@@ -1,0 +1,77 @@
+@layout('layout')
+
+@section('body')
+  <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Modifiez les infos du produit</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/update_produit" method="POST" enctype="multipart/form-data">
+                        {{ csrfField() }}
+                        @each(produit in produit)
+                            <div class="row">
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Nom du produit *</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Honney Babish" value="{{produit.name}}" required data-errors="Please Enter Name." required>
+                                        <input type="hidden" name="id" value="{{produit.id}}">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>    
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Code unique produit *</label>
+                                        <input type="text" class="form-control" name="code" disabled value="{{produit.code}}" placeholder="004" required data-errors="Please Enter Code." required>
+                                        <small style="color:red">Le code unique n'est pas modifiable</small>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div> 
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prix entreprise *</label>
+                                        <input type="text" class="form-control" name="prix_entreprise" value="{{produit.prix_entreprise}}" placeholder="3000" required data-errors="Please Enter Cost." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prix particulier *</label>
+                                        <input type="text" class="form-control" name="prix_particulier" value="{{produit.prix_particulier}}" placeholder="2500" required data-errors="Please Enter Price." required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">                                    
+                                    <div class="form-group">
+                                        <label>Quantité *</label>
+                                        <input type="text" class="form-control" name="quantite" placeholder="250" value="{{produit.quantite}}" required required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Image du produit *</label>
+                                        <input type="file" required class="form-control image-file" name="image" accept="image/*">
+                                        <small style="color:red">Le champ image est à modifier obligatoirement</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description du produit</label>
+                                        <textarea class="form-control" name="description" placeholder="Description du produit" rows="4">{{produit.description}}</textarea>
+                                    </div>
+                                </div>
+                            </div>                            
+                        @endeach
+                            <button type="submit" class="btn btn-primary mr-2">Modifier le produit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection

@@ -1,0 +1,62 @@
+@layout('layout')
+
+@section('body')
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="mb-3">Choisissez un client</h4>
+                        <p class="mb-0">Un tableau de bord client vous permet de rassembler et de visualiser facilement les données des client en vue de l'optimisation de <br>. l'expérience client, en assurant la fidélisation des clients. </p>
+                    </div>
+
+                    <a href="page-add-customers.html" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Ajouter un client</a>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive rounded mb-3">
+                <table class="data-table table mb-0 tbl-server-info">
+                    <thead class="bg-white text-uppercase">
+                        <tr class="ligth ligth-data">
+                            
+                            <th>Nom</th>
+                            <th>Prenoms</th>
+                            <th>Téléphone</th>
+                            <th>Commune</th>
+                            <th>WhatsApp</th>
+                            <th>Type de client</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ligth-body">
+                        @each(client in clients)
+                            <tr>
+                                
+                                <td>{{client.name}}</td>
+                                <td>{{client.prenoms}}</td>
+                                <td>{{client.telephone}}</td>
+                                <td>{{client.commune}}</td>
+                                <td>{{client.whatsapp}}</td>
+                                <td>
+                                    @if(client.type_client == 1)
+                                        <div class="badge badge-primary">Client entreprise</div>
+                                    @else
+                                        <div class="badge badge-secondary">Client particulier</div>
+                                    @endif
+                                </td>
+                                {{--  <td>{{client.commercial_id}}</td>  --}}
+                                <td>
+                                    <div class="d-flex align-items-center list-action">
+                                        <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="/{{params_id_com}}/{{client.id}}">
+                                            <i class="ri-eye-line mr-0"></i>
+                                        </a>
+                                        {{--  <input type="hidden" name="id_com" value="{{params_id_com}}">  --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+@endsection
