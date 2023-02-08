@@ -8,8 +8,8 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('name').notNullable()
       table.string('code').notNullable()
-      table.integer('prix_entreprise').notNullable()
-      table.integer('prix_particulier').notNullable()
+      table.integer('prix_entreprise').notNullable().defaultTo(0)
+      table.integer('prix_particulier').notNullable().defaultTo(0)
       table.integer('quantite').notNullable()
       table.string('image').notNullable()
       table.text('description')
@@ -19,7 +19,7 @@ export default class extends BaseSchema {
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table.timestamp('created_at', { useTz: true })
-      
+
     })
   }
 

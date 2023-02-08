@@ -14,7 +14,7 @@
                         {{ csrfField() }}
                             <div class="row">
 
-                                <div class="col-md-6">                      
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Choisissez le produit *</label>
                                         <select name="produit" id="" class="form-control">
@@ -26,35 +26,42 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">                      
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nom du type de produit *</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Honney Babish" required data-errors="Please Enter Name." required>
+                                        <input type="text" class="form-control" name="name" placeholder="Honney Babish" data-errors="Please Enter Name." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div>    
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Prix entreprise *</label>
-                                        <input type="text" class="form-control" name="prix_entreprise" placeholder="3000" required data-errors="Please Enter Cost." required>
+                                        <input type="text" class="form-control" name="prix_entreprise" placeholder="3000" data-errors="Please Enter Cost." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Prix particulier *</label>
-                                        <input type="text" class="form-control" name="prix_particulier" placeholder="2500" required data-errors="Please Enter Price." required>
+                                        <input type="text" class="form-control" name="prix_particulier" placeholder="2500" data-errors="Please Enter Price." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">                                    
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Quantité *</label>
-                                        <input type="text" class="form-control" name="quantite" placeholder="250" required required>
+                                        <input type="text" class="form-control" name="quantite" placeholder="250" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                            </div>                            
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Commission sur le produit *</label>
+                                        <input type="text" class="form-control" name="commission" placeholder="400" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary mr-2">Ajouter le type</button>
                         </form>
                     </div>

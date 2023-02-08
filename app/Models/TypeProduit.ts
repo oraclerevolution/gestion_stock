@@ -20,10 +20,13 @@ export default class TypeProduit extends BaseModel {
   public prix_particulier: string
 
   @column()
-  public statut: Number
+  public statut: number
 
   @column()
-  public produit_id: Number
+  public produit_id: number
+
+  @column()
+  public com: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
